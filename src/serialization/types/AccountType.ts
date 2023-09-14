@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
-export const AccountType: core.serialization.Schema<serializers.AccountType.Raw, UsedeltaApi.AccountType> =
+export const AccountType: core.serialization.Schema<serializers.AccountType.Raw, DeltaApi.AccountType> =
     core.serialization.enum_([
         "accounts_payable",
         "accounts_receivable",

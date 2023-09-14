@@ -3,10 +3,10 @@
  */
 
 import * as errors from "../../errors";
-import * as UsedeltaApi from "..";
+import * as DeltaApi from "..";
 
-export class NotFoundError extends errors.UsedeltaApiError {
-    constructor(body: UsedeltaApi.Error_) {
+export class NotFoundError extends errors.DeltaApiError {
+    constructor(body: DeltaApi.Error_) {
         super({
             statusCode: 404,
             body: body,

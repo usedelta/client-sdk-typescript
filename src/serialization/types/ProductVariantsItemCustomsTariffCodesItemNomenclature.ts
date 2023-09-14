@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
 export const ProductVariantsItemCustomsTariffCodesItemNomenclature: core.serialization.Schema<
     serializers.ProductVariantsItemCustomsTariffCodesItemNomenclature.Raw,
-    UsedeltaApi.ProductVariantsItemCustomsTariffCodesItemNomenclature
+    DeltaApi.ProductVariantsItemCustomsTariffCodesItemNomenclature
 > = core.serialization.enum_(["TARIC", "Instrastat", "HS-Code", "Other"]);
 
 export declare namespace ProductVariantsItemCustomsTariffCodesItemNomenclature {

@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
-export const ReturnStatus: core.serialization.Schema<serializers.ReturnStatus.Raw, UsedeltaApi.ReturnStatus> =
+export const ReturnStatus: core.serialization.Schema<serializers.ReturnStatus.Raw, DeltaApi.ReturnStatus> =
     core.serialization.enum_(["ANNOUNCED", "TRANSIT", "DELIVERED", "CANCELED", "COMPLETED", "OTHER"]);
 
 export declare namespace ReturnStatus {

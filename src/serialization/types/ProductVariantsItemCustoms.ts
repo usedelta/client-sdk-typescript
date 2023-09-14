@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
 export const ProductVariantsItemCustoms: core.serialization.ObjectSchema<
     serializers.ProductVariantsItemCustoms.Raw,
-    UsedeltaApi.ProductVariantsItemCustoms
+    DeltaApi.ProductVariantsItemCustoms
 > = core.serialization.object({
     tariffCodes: core.serialization.property(
         "tariff_codes",

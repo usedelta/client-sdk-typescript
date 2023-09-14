@@ -19,4 +19,5 @@ export interface GetOrdersRequest {
      * The first page number for pagination
      */
     first?: number;
+    platformKey?: string;
 }

@@ -4,7 +4,7 @@
 
 import * as errors from "../../errors";
 
-export class ForbiddenError extends errors.UsedeltaApiError {
+export class ForbiddenError extends errors.DeltaApiError {
     constructor(body?: unknown) {
         super({
             statusCode: 403,

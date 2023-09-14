@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
 export const ProductWithoutId: core.serialization.ObjectSchema<
     serializers.ProductWithoutId.Raw,
-    UsedeltaApi.ProductWithoutId
+    DeltaApi.ProductWithoutId
 > = core.serialization.lazyObject(async () => (await import("..")).Product);
 
 export declare namespace ProductWithoutId {

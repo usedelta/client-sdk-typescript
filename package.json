@@ -1,6 +1,6 @@
 {
     "name": "@usedelta/client-sdk-typescript",
-    "version": "0.0.2",
+    "version": "0.0.1",
     "private": false,
     "repository": "https://github.com/usedelta/client-sdk-typescript",
     "main": "./index.js",
@@ -14,7 +14,8 @@
         "@ungap/url-search-params": "0.2.2",
         "url-join": "4.0.1",
         "@types/url-join": "4.0.1",
-        "axios": "0.27.2"
+        "axios": "0.27.2",
+        "js-base64": "3.7.2"
     },
     "devDependencies": {
         "@types/node": "17.0.33",

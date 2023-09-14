@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
-export const Error_: core.serialization.ObjectSchema<serializers.Error_.Raw, UsedeltaApi.Error_> =
+export const Error_: core.serialization.ObjectSchema<serializers.Error_.Raw, DeltaApi.Error_> =
     core.serialization.object({
         message: core.serialization.string(),
     });

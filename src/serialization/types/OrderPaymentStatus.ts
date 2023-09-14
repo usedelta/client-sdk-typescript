@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
 export const OrderPaymentStatus: core.serialization.Schema<
     serializers.OrderPaymentStatus.Raw,
-    UsedeltaApi.OrderPaymentStatus
+    DeltaApi.OrderPaymentStatus
 > = core.serialization.enum_(["PAYED", "NOT_PAYED", "LOST"]);
 
 export declare namespace OrderPaymentStatus {

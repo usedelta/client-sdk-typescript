@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
-export const AccountStatus: core.serialization.Schema<serializers.AccountStatus.Raw, UsedeltaApi.AccountStatus> =
+export const AccountStatus: core.serialization.Schema<serializers.AccountStatus.Raw, DeltaApi.AccountStatus> =
     core.serialization.enum_(["active", "inactive", "pending"]);
 
 export declare namespace AccountStatus {

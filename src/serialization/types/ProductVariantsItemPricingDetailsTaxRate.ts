@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
 export const ProductVariantsItemPricingDetailsTaxRate: core.serialization.Schema<
     serializers.ProductVariantsItemPricingDetailsTaxRate.Raw,
-    UsedeltaApi.ProductVariantsItemPricingDetailsTaxRate
+    DeltaApi.ProductVariantsItemPricingDetailsTaxRate
 > = core.serialization.enum_(["reduced", "normal", "free"]);
 
 export declare namespace ProductVariantsItemPricingDetailsTaxRate {

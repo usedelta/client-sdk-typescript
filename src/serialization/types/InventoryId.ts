@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
-export const InventoryId: core.serialization.Schema<serializers.InventoryId.Raw, UsedeltaApi.InventoryId> =
+export const InventoryId: core.serialization.Schema<serializers.InventoryId.Raw, DeltaApi.InventoryId> =
     core.serialization.string();
 
 export declare namespace InventoryId {

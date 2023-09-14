@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
 export const OrderFulfillmentStatus: core.serialization.Schema<
     serializers.OrderFulfillmentStatus.Raw,
-    UsedeltaApi.OrderFulfillmentStatus
+    DeltaApi.OrderFulfillmentStatus
 > = core.serialization.enum_(["NULL", "FULFILLED", "PARTIALLY", "RETURNED"]);
 
 export declare namespace OrderFulfillmentStatus {

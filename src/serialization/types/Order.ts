@@ -3,64 +3,63 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
-export const Order: core.serialization.ObjectSchema<serializers.Order.Raw, UsedeltaApi.Order> =
-    core.serialization.object({
-        id: core.serialization.lazy(async () => (await import("..")).OrderId),
-        connectionId: core.serialization.property("connection_id", core.serialization.string().optional()),
-        platform: core.serialization.string().optional(),
-        channel: core.serialization.string().optional(),
-        platformId: core.serialization.property("platform_id", core.serialization.string().optional()),
-        channelId: core.serialization.property("channel_id", core.serialization.string().optional()),
-        orderNumber: core.serialization.property("order_number", core.serialization.string().optional()),
-        status: core.serialization.lazy(async () => (await import("..")).OrderStatus).optional(),
-        paymentStatus: core.serialization.property(
-            "payment_status",
-            core.serialization.lazy(async () => (await import("..")).OrderPaymentStatus).optional()
-        ),
-        fulfillmentStatus: core.serialization.property(
-            "fulfillment_status",
-            core.serialization.lazy(async () => (await import("..")).OrderFulfillmentStatus).optional()
-        ),
-        totalOrderDiscount: core.serialization.property("total_order_discount", core.serialization.number().optional()),
-        discountCodes: core.serialization.property("discount_codes", core.serialization.string().optional()),
-        subtotalPrice: core.serialization.property("subtotal_price", core.serialization.number().optional()),
-        totalPrice: core.serialization.property("total_price", core.serialization.number().optional()),
-        totalShipping: core.serialization.property("total_shipping", core.serialization.number().optional()),
-        totalShippingDiscount: core.serialization.property(
-            "total_shipping_discount",
-            core.serialization.number().optional()
-        ),
-        totalTax: core.serialization.property("total_tax", core.serialization.number().optional()),
-        taxRate: core.serialization.property("tax_rate", core.serialization.number().optional()),
-        isoCurrencyCode: core.serialization.property("iso_currency_code", core.serialization.string().optional()),
-        paymentMethod: core.serialization.property("payment_method", core.serialization.string().optional()),
-        invoiceNumber: core.serialization.property("invoice_number", core.serialization.string().optional()),
-        invoiceDate: core.serialization.property("invoice_date", core.serialization.string().optional()),
-        billingAddress: core.serialization.property(
-            "billing_address",
-            core.serialization.lazyObject(async () => (await import("..")).OrderBillingAddress).optional()
-        ),
-        shippingAddress: core.serialization.property(
-            "shipping_address",
-            core.serialization.lazyObject(async () => (await import("..")).OrderShippingAddress).optional()
-        ),
-        lineItems: core.serialization.property(
-            "line_items",
-            core.serialization
-                .list(core.serialization.lazyObject(async () => (await import("..")).OrderLineItemsItem))
-                .optional()
-        ),
-        totalWeight: core.serialization.property("total_weight", core.serialization.number().optional()),
-        unitWeight: core.serialization.property("unit_weight", core.serialization.string().optional()),
-        createdAt: core.serialization.property("created_at", core.serialization.string().optional()),
-        updatedAt: core.serialization.property("updated_at", core.serialization.string().optional()),
-        fulfillments: core.serialization
-            .list(core.serialization.lazyObject(async () => (await import("..")).Fulfillment))
-            .optional(),
-    });
+export const Order: core.serialization.ObjectSchema<serializers.Order.Raw, DeltaApi.Order> = core.serialization.object({
+    id: core.serialization.lazy(async () => (await import("..")).OrderId),
+    connectionId: core.serialization.property("connection_id", core.serialization.string().optional()),
+    platform: core.serialization.string().optional(),
+    channel: core.serialization.string().optional(),
+    platformId: core.serialization.property("platform_id", core.serialization.string().optional()),
+    channelId: core.serialization.property("channel_id", core.serialization.string().optional()),
+    orderNumber: core.serialization.property("order_number", core.serialization.string().optional()),
+    status: core.serialization.lazy(async () => (await import("..")).OrderStatus).optional(),
+    paymentStatus: core.serialization.property(
+        "payment_status",
+        core.serialization.lazy(async () => (await import("..")).OrderPaymentStatus).optional()
+    ),
+    fulfillmentStatus: core.serialization.property(
+        "fulfillment_status",
+        core.serialization.lazy(async () => (await import("..")).OrderFulfillmentStatus).optional()
+    ),
+    totalOrderDiscount: core.serialization.property("total_order_discount", core.serialization.number().optional()),
+    discountCodes: core.serialization.property("discount_codes", core.serialization.string().optional()),
+    subtotalPrice: core.serialization.property("subtotal_price", core.serialization.number().optional()),
+    totalPrice: core.serialization.property("total_price", core.serialization.number().optional()),
+    totalShipping: core.serialization.property("total_shipping", core.serialization.number().optional()),
+    totalShippingDiscount: core.serialization.property(
+        "total_shipping_discount",
+        core.serialization.number().optional()
+    ),
+    totalTax: core.serialization.property("total_tax", core.serialization.number().optional()),
+    taxRate: core.serialization.property("tax_rate", core.serialization.number().optional()),
+    isoCurrencyCode: core.serialization.property("iso_currency_code", core.serialization.string().optional()),
+    paymentMethod: core.serialization.property("payment_method", core.serialization.string().optional()),
+    invoiceNumber: core.serialization.property("invoice_number", core.serialization.string().optional()),
+    invoiceDate: core.serialization.property("invoice_date", core.serialization.string().optional()),
+    billingAddress: core.serialization.property(
+        "billing_address",
+        core.serialization.lazyObject(async () => (await import("..")).OrderBillingAddress).optional()
+    ),
+    shippingAddress: core.serialization.property(
+        "shipping_address",
+        core.serialization.lazyObject(async () => (await import("..")).OrderShippingAddress).optional()
+    ),
+    lineItems: core.serialization.property(
+        "line_items",
+        core.serialization
+            .list(core.serialization.lazyObject(async () => (await import("..")).OrderLineItemsItem))
+            .optional()
+    ),
+    totalWeight: core.serialization.property("total_weight", core.serialization.number().optional()),
+    unitWeight: core.serialization.property("unit_weight", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.string().optional()),
+    updatedAt: core.serialization.property("updated_at", core.serialization.string().optional()),
+    fulfillments: core.serialization
+        .list(core.serialization.lazyObject(async () => (await import("..")).Fulfillment))
+        .optional(),
+});
 
 export declare namespace Order {
     interface Raw {

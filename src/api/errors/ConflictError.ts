@@ -3,10 +3,10 @@
  */
 
 import * as errors from "../../errors";
-import * as UsedeltaApi from "..";
+import * as DeltaApi from "..";
 
-export class ConflictError extends errors.UsedeltaApiError {
-    constructor(body: UsedeltaApi.Error_) {
+export class ConflictError extends errors.DeltaApiError {
+    constructor(body: DeltaApi.Error_) {
         super({
             statusCode: 409,
             body: body,

@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "../../../..";
-import * as UsedeltaApi from "../../../../../api";
+import * as DeltaApi from "../../../../../api";
 import * as core from "../../../../../core";
 
-export const InventorySet: core.serialization.Schema<serializers.InventorySet.Raw, UsedeltaApi.InventorySet> =
+export const InventorySet: core.serialization.Schema<serializers.InventorySet.Raw, DeltaApi.InventorySet> =
     core.serialization.object({
         id: core.serialization.string(),
         connectionId: core.serialization.property("connection_id", core.serialization.string().optional()),

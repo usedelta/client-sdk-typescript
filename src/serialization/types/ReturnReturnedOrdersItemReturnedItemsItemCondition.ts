@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
 export const ReturnReturnedOrdersItemReturnedItemsItemCondition: core.serialization.Schema<
     serializers.ReturnReturnedOrdersItemReturnedItemsItemCondition.Raw,
-    UsedeltaApi.ReturnReturnedOrdersItemReturnedItemsItemCondition
+    DeltaApi.ReturnReturnedOrdersItemReturnedItemsItemCondition
 > = core.serialization.enum_(["like_new", "used", "damaged"]);
 
 export declare namespace ReturnReturnedOrdersItemReturnedItemsItemCondition {

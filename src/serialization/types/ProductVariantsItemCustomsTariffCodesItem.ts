@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
 export const ProductVariantsItemCustomsTariffCodesItem: core.serialization.ObjectSchema<
     serializers.ProductVariantsItemCustomsTariffCodesItem.Raw,
-    UsedeltaApi.ProductVariantsItemCustomsTariffCodesItem
+    DeltaApi.ProductVariantsItemCustomsTariffCodesItem
 > = core.serialization.object({
     nomenclature: core.serialization
         .lazy(async () => (await import("..")).ProductVariantsItemCustomsTariffCodesItemNomenclature)

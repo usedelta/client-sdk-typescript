@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
-export const Fulfillment: core.serialization.ObjectSchema<serializers.Fulfillment.Raw, UsedeltaApi.Fulfillment> =
+export const Fulfillment: core.serialization.ObjectSchema<serializers.Fulfillment.Raw, DeltaApi.Fulfillment> =
     core.serialization.object({
         id: core.serialization.string(),
         carrier: core.serialization.string().optional(),

@@ -1,2 +1,2 @@
-export { UsedeltaApiError } from "./UsedeltaApiError";
-export { UsedeltaApiTimeoutError } from "./UsedeltaApiTimeoutError";
+export { DeltaApiError } from "./DeltaApiError";
+export { DeltaApiTimeoutError } from "./DeltaApiTimeoutError";

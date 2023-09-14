@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
-export const Product: core.serialization.ObjectSchema<serializers.Product.Raw, UsedeltaApi.Product> =
+export const Product: core.serialization.ObjectSchema<serializers.Product.Raw, DeltaApi.Product> =
     core.serialization.object({
         id: core.serialization.lazy(async () => (await import("..")).ProductId),
         connectionId: core.serialization.property("connection_id", core.serialization.string().optional()),

@@ -3,7 +3,7 @@
  */
 
 import * as core from "../../../../core";
-import * as UsedeltaApi from "../../..";
+import * as DeltaApi from "../../..";
 import urlJoin from "url-join";
 import * as serializers from "../../../../serialization";
 import * as errors from "../../../../errors";
@@ -11,7 +11,7 @@ import * as errors from "../../../../errors";
 export declare namespace JournalEntries {
     interface Options {
         environment: core.Supplier<string>;
-        apiKey: core.Supplier<string>;
+        token: core.Supplier<core.BearerToken>;
     }
 
     interface RequestOptions {
@@ -27,10 +27,10 @@ export class JournalEntries {
 
     /**
      * Get all journal entries
-     * @throws {@link UsedeltaApi.NotFoundError}
-     * @throws {@link UsedeltaApi.InternalServerError}
+     * @throws {@link DeltaApi.NotFoundError}
+     * @throws {@link DeltaApi.InternalServerError}
      */
-    public async getJournalEntries(requestOptions?: JournalEntries.RequestOptions): Promise<UsedeltaApi.JournalEntry> {
+    public async getJournalEntries(requestOptions?: JournalEntries.RequestOptions): Promise<DeltaApi.JournalEntry> {
         const _response = await core.fetcher({
             url: urlJoin(await core.Supplier.get(this._options.environment), "journalentries"),
             method: "GET",
@@ -38,7 +38,7 @@ export class JournalEntries {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@usedelta/client-sdk-typescript",
-                "X-Fern-SDK-Version": "0.0.2",
+                "X-Fern-SDK-Version": "0.0.1",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -55,7 +55,7 @@ export class JournalEntries {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 404:
-                    throw new UsedeltaApi.NotFoundError(
+                    throw new DeltaApi.NotFoundError(
                         await serializers.Error_.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -64,7 +64,7 @@ export class JournalEntries {
                         })
                     );
                 case 500:
-                    throw new UsedeltaApi.InternalServerError(
+                    throw new DeltaApi.InternalServerError(
                         await serializers.Error_.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -73,7 +73,7 @@ export class JournalEntries {
                         })
                     );
                 default:
-                    throw new errors.UsedeltaApiError({
+                    throw new errors.DeltaApiError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -82,14 +82,14 @@ export class JournalEntries {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.UsedeltaApiError({
+                throw new errors.DeltaApiError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.UsedeltaApiTimeoutError();
+                throw new errors.DeltaApiTimeoutError();
             case "unknown":
-                throw new errors.UsedeltaApiError({
+                throw new errors.DeltaApiError({
                     message: _response.error.errorMessage,
                 });
         }
@@ -97,13 +97,13 @@ export class JournalEntries {
 
     /**
      * Get a specific journal entry
-     * @throws {@link UsedeltaApi.NotFoundError}
-     * @throws {@link UsedeltaApi.InternalServerError}
+     * @throws {@link DeltaApi.NotFoundError}
+     * @throws {@link DeltaApi.InternalServerError}
      */
     public async getJournalEntryById(
-        id: UsedeltaApi.JournalEntryId,
+        id: DeltaApi.JournalEntryId,
         requestOptions?: JournalEntries.RequestOptions
-    ): Promise<UsedeltaApi.JournalEntry> {
+    ): Promise<DeltaApi.JournalEntry> {
         const _response = await core.fetcher({
             url: urlJoin(
                 await core.Supplier.get(this._options.environment),
@@ -114,7 +114,7 @@ export class JournalEntries {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@usedelta/client-sdk-typescript",
-                "X-Fern-SDK-Version": "0.0.2",
+                "X-Fern-SDK-Version": "0.0.1",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -131,7 +131,7 @@ export class JournalEntries {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 404:
-                    throw new UsedeltaApi.NotFoundError(
+                    throw new DeltaApi.NotFoundError(
                         await serializers.Error_.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -140,7 +140,7 @@ export class JournalEntries {
                         })
                     );
                 case 500:
-                    throw new UsedeltaApi.InternalServerError(
+                    throw new DeltaApi.InternalServerError(
                         await serializers.Error_.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -149,7 +149,7 @@ export class JournalEntries {
                         })
                     );
                 default:
-                    throw new errors.UsedeltaApiError({
+                    throw new errors.DeltaApiError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -158,21 +158,20 @@ export class JournalEntries {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.UsedeltaApiError({
+                throw new errors.DeltaApiError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.UsedeltaApiTimeoutError();
+                throw new errors.DeltaApiTimeoutError();
             case "unknown":
-                throw new errors.UsedeltaApiError({
+                throw new errors.DeltaApiError({
                     message: _response.error.errorMessage,
                 });
         }
     }
 
     protected async _getAuthorizationHeader() {
-        const value = await core.Supplier.get(this._options.apiKey);
-        return value;
+        return `Bearer ${await core.Supplier.get(this._options.token)}`;
     }
 }

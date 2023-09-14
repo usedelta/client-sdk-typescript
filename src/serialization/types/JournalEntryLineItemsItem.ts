@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
 export const JournalEntryLineItemsItem: core.serialization.ObjectSchema<
     serializers.JournalEntryLineItemsItem.Raw,
-    UsedeltaApi.JournalEntryLineItemsItem
+    DeltaApi.JournalEntryLineItemsItem
 > = core.serialization.object({
     description: core.serialization.string().optional(),
     totalAmount: core.serialization.property("total_amount", core.serialization.number().optional()),

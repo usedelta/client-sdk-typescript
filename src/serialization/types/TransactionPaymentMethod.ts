@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
 export const TransactionPaymentMethod: core.serialization.Schema<
     serializers.TransactionPaymentMethod.Raw,
-    UsedeltaApi.TransactionPaymentMethod
+    DeltaApi.TransactionPaymentMethod
 > = core.serialization.enum_(["card", "cash", "other"]);
 
 export declare namespace TransactionPaymentMethod {

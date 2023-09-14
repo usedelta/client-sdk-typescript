@@ -13,10 +13,10 @@ import { Accounts } from "./api/resources/accounts/client/Client";
 import { JournalEntries } from "./api/resources/journalEntries/client/Client";
 import { Fulfillments } from "./api/resources/fulfillments/client/Client";
 
-export declare namespace UsedeltaApiClient {
+export declare namespace DeltaApiClient {
     interface Options {
         environment: core.Supplier<string>;
-        apiKey: core.Supplier<string>;
+        token: core.Supplier<core.BearerToken>;
     }
 
     interface RequestOptions {
@@ -24,8 +24,8 @@ export declare namespace UsedeltaApiClient {
     }
 }
 
-export class UsedeltaApiClient {
-    constructor(protected readonly _options: UsedeltaApiClient.Options) {}
+export class DeltaApiClient {
+    constructor(protected readonly _options: DeltaApiClient.Options) {}
 
     protected _orders: Orders | undefined;
 

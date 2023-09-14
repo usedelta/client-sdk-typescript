@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
 export const OrderBillingAddress: core.serialization.ObjectSchema<
     serializers.OrderBillingAddress.Raw,
-    UsedeltaApi.OrderBillingAddress
+    DeltaApi.OrderBillingAddress
 > = core.serialization.object({
     firstName: core.serialization.property("first_name", core.serialization.string().optional()),
     lastName: core.serialization.property("last_name", core.serialization.string().optional()),

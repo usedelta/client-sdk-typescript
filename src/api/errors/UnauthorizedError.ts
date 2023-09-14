@@ -4,7 +4,7 @@
 
 import * as errors from "../../errors";
 
-export class UnauthorizedError extends errors.UsedeltaApiError {
+export class UnauthorizedError extends errors.DeltaApiError {
     constructor(body?: unknown) {
         super({
             statusCode: 401,

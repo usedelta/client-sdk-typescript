@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
 export const ProductVariantsItemDimensions: core.serialization.ObjectSchema<
     serializers.ProductVariantsItemDimensions.Raw,
-    UsedeltaApi.ProductVariantsItemDimensions
+    DeltaApi.ProductVariantsItemDimensions
 > = core.serialization.object({
     width: core.serialization.number().optional(),
     height: core.serialization.number().optional(),

@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
 export const FulfillmentUnitWeight: core.serialization.Schema<
     serializers.FulfillmentUnitWeight.Raw,
-    UsedeltaApi.FulfillmentUnitWeight
+    DeltaApi.FulfillmentUnitWeight
 > = core.serialization.enum_(["kg", "g", "lb", "oz"]);
 
 export declare namespace FulfillmentUnitWeight {

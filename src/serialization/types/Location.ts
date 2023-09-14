@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
-export const Location: core.serialization.ObjectSchema<serializers.Location.Raw, UsedeltaApi.Location> =
+export const Location: core.serialization.ObjectSchema<serializers.Location.Raw, DeltaApi.Location> =
     core.serialization.object({
         id: core.serialization.string(),
         platformId: core.serialization.property("platform_id", core.serialization.string().optional()),

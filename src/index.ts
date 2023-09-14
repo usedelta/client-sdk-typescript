@@ -1,3 +1,3 @@
-export * as UsedeltaApi from "./api";
-export { UsedeltaApiClient } from "./Client";
-export { UsedeltaApiError, UsedeltaApiTimeoutError } from "./errors";
+export * as DeltaApi from "./api";
+export { DeltaApiClient } from "./Client";
+export { DeltaApiError, DeltaApiTimeoutError } from "./errors";

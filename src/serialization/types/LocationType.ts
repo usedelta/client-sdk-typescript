@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
-export const LocationType: core.serialization.Schema<serializers.LocationType.Raw, UsedeltaApi.LocationType> =
+export const LocationType: core.serialization.Schema<serializers.LocationType.Raw, DeltaApi.LocationType> =
     core.serialization.enum_(["warehouse", "store", "office", "other"]);
 
 export declare namespace LocationType {

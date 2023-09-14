@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
 export const FulfillmentOrdersItem: core.serialization.ObjectSchema<
     serializers.FulfillmentOrdersItem.Raw,
-    UsedeltaApi.FulfillmentOrdersItem
+    DeltaApi.FulfillmentOrdersItem
 > = core.serialization.object({
     platformId: core.serialization.property("platform_id", core.serialization.string().optional()),
 });

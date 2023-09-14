@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
 export const InventoryWithoutId: core.serialization.ObjectSchema<
     serializers.InventoryWithoutId.Raw,
-    UsedeltaApi.InventoryWithoutId
+    DeltaApi.InventoryWithoutId
 > = core.serialization.object({
     id: core.serialization.string().optional(),
     connectionId: core.serialization.property("connection_id", core.serialization.string().optional()),

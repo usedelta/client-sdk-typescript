@@ -3,7 +3,7 @@
  */
 
 import * as core from "../../../../core";
-import * as UsedeltaApi from "../../..";
+import * as DeltaApi from "../../..";
 import urlJoin from "url-join";
 import * as serializers from "../../../../serialization";
 import * as errors from "../../../../errors";
@@ -11,7 +11,7 @@ import * as errors from "../../../../errors";
 export declare namespace Products {
     interface Options {
         environment: core.Supplier<string>;
-        apiKey: core.Supplier<string>;
+        token: core.Supplier<core.BearerToken>;
     }
 
     interface RequestOptions {
@@ -27,10 +27,10 @@ export class Products {
 
     /**
      * Get all products
-     * @throws {@link UsedeltaApi.NotFoundError}
-     * @throws {@link UsedeltaApi.InternalServerError}
+     * @throws {@link DeltaApi.NotFoundError}
+     * @throws {@link DeltaApi.InternalServerError}
      */
-    public async getProducts(requestOptions?: Products.RequestOptions): Promise<UsedeltaApi.Product> {
+    public async getProducts(requestOptions?: Products.RequestOptions): Promise<DeltaApi.Product> {
         const _response = await core.fetcher({
             url: urlJoin(await core.Supplier.get(this._options.environment), "products"),
             method: "GET",
@@ -38,7 +38,7 @@ export class Products {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@usedelta/client-sdk-typescript",
-                "X-Fern-SDK-Version": "0.0.2",
+                "X-Fern-SDK-Version": "0.0.1",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -55,7 +55,7 @@ export class Products {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 404:
-                    throw new UsedeltaApi.NotFoundError(
+                    throw new DeltaApi.NotFoundError(
                         await serializers.Error_.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -64,7 +64,7 @@ export class Products {
                         })
                     );
                 case 500:
-                    throw new UsedeltaApi.InternalServerError(
+                    throw new DeltaApi.InternalServerError(
                         await serializers.Error_.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -73,7 +73,7 @@ export class Products {
                         })
                     );
                 default:
-                    throw new errors.UsedeltaApiError({
+                    throw new errors.DeltaApiError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -82,14 +82,14 @@ export class Products {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.UsedeltaApiError({
+                throw new errors.DeltaApiError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.UsedeltaApiTimeoutError();
+                throw new errors.DeltaApiTimeoutError();
             case "unknown":
-                throw new errors.UsedeltaApiError({
+                throw new errors.DeltaApiError({
                     message: _response.error.errorMessage,
                 });
         }
@@ -97,16 +97,16 @@ export class Products {
 
     /**
      * Create a new product
-     * @throws {@link UsedeltaApi.BadRequestError}
-     * @throws {@link UsedeltaApi.UnauthorizedError}
-     * @throws {@link UsedeltaApi.ForbiddenError}
-     * @throws {@link UsedeltaApi.ConflictError}
-     * @throws {@link UsedeltaApi.InternalServerError}
+     * @throws {@link DeltaApi.BadRequestError}
+     * @throws {@link DeltaApi.UnauthorizedError}
+     * @throws {@link DeltaApi.ForbiddenError}
+     * @throws {@link DeltaApi.ConflictError}
+     * @throws {@link DeltaApi.InternalServerError}
      */
     public async postProducts(
-        request: UsedeltaApi.Product,
+        request: DeltaApi.Product,
         requestOptions?: Products.RequestOptions
-    ): Promise<UsedeltaApi.Product> {
+    ): Promise<DeltaApi.Product> {
         const _response = await core.fetcher({
             url: urlJoin(await core.Supplier.get(this._options.environment), "products"),
             method: "POST",
@@ -114,7 +114,7 @@ export class Products {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@usedelta/client-sdk-typescript",
-                "X-Fern-SDK-Version": "0.0.2",
+                "X-Fern-SDK-Version": "0.0.1",
             },
             contentType: "application/json",
             body: await serializers.Product.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
@@ -132,7 +132,7 @@ export class Products {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new UsedeltaApi.BadRequestError(
+                    throw new DeltaApi.BadRequestError(
                         await serializers.Error_.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -141,11 +141,11 @@ export class Products {
                         })
                     );
                 case 401:
-                    throw new UsedeltaApi.UnauthorizedError(_response.error.body);
+                    throw new DeltaApi.UnauthorizedError(_response.error.body);
                 case 403:
-                    throw new UsedeltaApi.ForbiddenError(_response.error.body);
+                    throw new DeltaApi.ForbiddenError(_response.error.body);
                 case 409:
-                    throw new UsedeltaApi.ConflictError(
+                    throw new DeltaApi.ConflictError(
                         await serializers.Error_.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -154,7 +154,7 @@ export class Products {
                         })
                     );
                 case 500:
-                    throw new UsedeltaApi.InternalServerError(
+                    throw new DeltaApi.InternalServerError(
                         await serializers.Error_.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -163,7 +163,7 @@ export class Products {
                         })
                     );
                 default:
-                    throw new errors.UsedeltaApiError({
+                    throw new errors.DeltaApiError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -172,14 +172,14 @@ export class Products {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.UsedeltaApiError({
+                throw new errors.DeltaApiError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.UsedeltaApiTimeoutError();
+                throw new errors.DeltaApiTimeoutError();
             case "unknown":
-                throw new errors.UsedeltaApiError({
+                throw new errors.DeltaApiError({
                     message: _response.error.errorMessage,
                 });
         }
@@ -187,13 +187,13 @@ export class Products {
 
     /**
      * Get a specific product
-     * @throws {@link UsedeltaApi.NotFoundError}
-     * @throws {@link UsedeltaApi.InternalServerError}
+     * @throws {@link DeltaApi.NotFoundError}
+     * @throws {@link DeltaApi.InternalServerError}
      */
     public async getProductById(
-        productId: UsedeltaApi.ProductId,
+        productId: DeltaApi.ProductId,
         requestOptions?: Products.RequestOptions
-    ): Promise<UsedeltaApi.Product> {
+    ): Promise<DeltaApi.Product> {
         const _response = await core.fetcher({
             url: urlJoin(
                 await core.Supplier.get(this._options.environment),
@@ -204,7 +204,7 @@ export class Products {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@usedelta/client-sdk-typescript",
-                "X-Fern-SDK-Version": "0.0.2",
+                "X-Fern-SDK-Version": "0.0.1",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -221,7 +221,7 @@ export class Products {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 404:
-                    throw new UsedeltaApi.NotFoundError(
+                    throw new DeltaApi.NotFoundError(
                         await serializers.Error_.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -230,7 +230,7 @@ export class Products {
                         })
                     );
                 case 500:
-                    throw new UsedeltaApi.InternalServerError(
+                    throw new DeltaApi.InternalServerError(
                         await serializers.Error_.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -239,7 +239,7 @@ export class Products {
                         })
                     );
                 default:
-                    throw new errors.UsedeltaApiError({
+                    throw new errors.DeltaApiError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
                     });
@@ -248,21 +248,20 @@ export class Products {
 
         switch (_response.error.reason) {
             case "non-json":
-                throw new errors.UsedeltaApiError({
+                throw new errors.DeltaApiError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.UsedeltaApiTimeoutError();
+                throw new errors.DeltaApiTimeoutError();
             case "unknown":
-                throw new errors.UsedeltaApiError({
+                throw new errors.DeltaApiError({
                     message: _response.error.errorMessage,
                 });
         }
     }
 
     protected async _getAuthorizationHeader() {
-        const value = await core.Supplier.get(this._options.apiKey);
-        return value;
+        return `Bearer ${await core.Supplier.get(this._options.token)}`;
     }
 }

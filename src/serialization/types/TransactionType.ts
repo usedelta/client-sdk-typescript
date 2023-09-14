@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
-export const TransactionType: core.serialization.Schema<serializers.TransactionType.Raw, UsedeltaApi.TransactionType> =
+export const TransactionType: core.serialization.Schema<serializers.TransactionType.Raw, DeltaApi.TransactionType> =
     core.serialization.enum_(["sale", "refunt", "other"]);
 
 export declare namespace TransactionType {

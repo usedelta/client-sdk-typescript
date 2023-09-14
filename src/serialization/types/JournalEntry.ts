@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
-export const JournalEntry: core.serialization.ObjectSchema<serializers.JournalEntry.Raw, UsedeltaApi.JournalEntry> =
+export const JournalEntry: core.serialization.ObjectSchema<serializers.JournalEntry.Raw, DeltaApi.JournalEntry> =
     core.serialization.object({
         id: core.serialization.lazy(async () => (await import("..")).JournalEntryId).optional(),
         connectionId: core.serialization.property("connection_id", core.serialization.string().optional()),

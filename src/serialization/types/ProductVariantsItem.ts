@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
 export const ProductVariantsItem: core.serialization.ObjectSchema<
     serializers.ProductVariantsItem.Raw,
-    UsedeltaApi.ProductVariantsItem
+    DeltaApi.ProductVariantsItem
 > = core.serialization.object({
     id: core.serialization.string().optional(),
     platformId: core.serialization.property("platform_id", core.serialization.string().optional()),

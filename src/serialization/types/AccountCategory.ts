@@ -3,10 +3,10 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
-export const AccountCategory: core.serialization.Schema<serializers.AccountCategory.Raw, UsedeltaApi.AccountCategory> =
+export const AccountCategory: core.serialization.Schema<serializers.AccountCategory.Raw, DeltaApi.AccountCategory> =
     core.serialization.enum_(["asset", "expense", "income", "liability", "equity", "unknown"]);
 
 export declare namespace AccountCategory {

@@ -3,12 +3,12 @@
  */
 
 import * as serializers from "..";
-import * as UsedeltaApi from "../../api";
+import * as DeltaApi from "../../api";
 import * as core from "../../core";
 
 export const TransactionStatus: core.serialization.Schema<
     serializers.TransactionStatus.Raw,
-    UsedeltaApi.TransactionStatus
+    DeltaApi.TransactionStatus
 > = core.serialization.enum_(["success", "failed", "pending", "canceled", "refunded", "other"]);
 
 export declare namespace TransactionStatus {
