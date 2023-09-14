@@ -6,6 +6,7 @@ export * from "./Fulfillment";
 export * from "./FulfillmentOrdersItem";
 export * from "./FulfillmentLineItemsItem";
 export * from "./FulfillmentUnitWeight";
+export * from "./OrderCollection";
 export * from "./OrderId";
 export * from "./Order";
 export * from "./OrderStatus";

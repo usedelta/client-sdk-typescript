@@ -34,7 +34,7 @@ export class Orders {
     public async getOrders(
         request: DeltaApi.GetOrdersRequest = {},
         requestOptions?: Orders.RequestOptions
-    ): Promise<DeltaApi.Order[]> {
+    ): Promise<DeltaApi.Order> {
         const { from: from_, to, next, first, platformKey } = request;
         const _queryParams = new URLSearchParams();
         if (from_ != null) {
@@ -60,7 +60,7 @@ export class Orders {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@usedelta/client-sdk-typescript",
-                "X-Fern-SDK-Version": "0.0.3",
+                "X-Fern-SDK-Version": "0.0.5",
                 "Platform-Key": platformKey != null ? platformKey : undefined,
             },
             contentType: "application/json",
@@ -68,7 +68,7 @@ export class Orders {
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
         });
         if (_response.ok) {
-            return await serializers.orders.getOrders.Response.parseOrThrow(_response.body, {
+            return await serializers.Order.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -138,7 +138,7 @@ export class Orders {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@usedelta/client-sdk-typescript",
-                "X-Fern-SDK-Version": "0.0.3",
+                "X-Fern-SDK-Version": "0.0.5",
             },
             contentType: "application/json",
             body: await serializers.OrderWithoutId.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
@@ -228,7 +228,7 @@ export class Orders {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@usedelta/client-sdk-typescript",
-                "X-Fern-SDK-Version": "0.0.3",
+                "X-Fern-SDK-Version": "0.0.5",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -308,7 +308,7 @@ export class Orders {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@usedelta/client-sdk-typescript",
-                "X-Fern-SDK-Version": "0.0.3",
+                "X-Fern-SDK-Version": "0.0.5",
             },
             contentType: "application/json",
             body: await serializers.OrderWithoutId.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
