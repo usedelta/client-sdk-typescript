@@ -1,1 +1,0 @@
-export { InventorySet } from "./InventorySet";
