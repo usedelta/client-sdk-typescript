@@ -30,7 +30,11 @@ export class Accounts {
      * @throws {@link DeltaApi.NotFoundError}
      * @throws {@link DeltaApi.InternalServerError}
      */
-    public async getAccounts(requestOptions?: Accounts.RequestOptions): Promise<DeltaApi.Account> {
+    public async getAccounts(
+        request: DeltaApi.GetAccountsRequest = {},
+        requestOptions?: Accounts.RequestOptions
+    ): Promise<DeltaApi.AccountCollection> {
+        const { platformKey } = request;
         const _response = await core.fetcher({
             url: urlJoin(await core.Supplier.get(this._options.environment), "accounts"),
             method: "GET",
@@ -38,13 +42,14 @@ export class Accounts {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@usedelta/client-sdk-typescript",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
+                "Platform-Key": platformKey != null ? platformKey : undefined,
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
         });
         if (_response.ok) {
-            return await serializers.Account.parseOrThrow(_response.body, {
+            return await serializers.AccountCollection.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -114,7 +119,7 @@ export class Accounts {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@usedelta/client-sdk-typescript",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
             },
             contentType: "application/json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

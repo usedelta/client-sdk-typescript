@@ -9,3 +9,4 @@ export * as journalEntries from "./journalEntries";
 export * as fulfillments from "./fulfillments";
 export * from "./orders/client/requests";
 export * from "./inventory/client/requests";
+export * from "./accounts/client/requests";

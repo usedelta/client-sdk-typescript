@@ -45,6 +45,7 @@ export * from "./Transaction";
 export * from "./TransactionType";
 export * from "./TransactionPaymentMethod";
 export * from "./TransactionStatus";
+export * from "./AccountCollection";
 export * from "./AccountId";
 export * from "./Account";
 export * from "./AccountCategory";
