@@ -5,6 +5,7 @@
 import * as environments from "./environments";
 import * as core from "./core";
 import { Accounts } from "./api/resources/accounts/client/Client";
+import { Journalentries } from "./api/resources/journalentries/client/Client";
 
 export declare namespace DeltaApiClient {
     interface Options {
@@ -25,5 +26,11 @@ export class DeltaApiClient {
 
     public get accounts(): Accounts {
         return (this._accounts ??= new Accounts(this._options));
+    }
+
+    protected _journalentries: Journalentries | undefined;
+
+    public get journalentries(): Journalentries {
+        return (this._journalentries ??= new Journalentries(this._options));
     }
 }

@@ -1,6 +1,6 @@
 {
     "name": "@usedelta/client-sdk-typescript",
-    "version": "0.0.12",
+    "version": "0.0.13",
     "private": false,
     "repository": "https://github.com/usedelta/client-sdk-typescript",
     "main": "./index.js",

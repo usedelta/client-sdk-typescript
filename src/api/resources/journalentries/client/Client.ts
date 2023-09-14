@@ -9,7 +9,7 @@ import urlJoin from "url-join";
 import * as serializers from "../../../../serialization";
 import * as errors from "../../../../errors";
 
-export declare namespace Accounts {
+export declare namespace Journalentries {
     interface Options {
         environment?: core.Supplier<environments.DeltaApiEnvironment | string>;
         token: core.Supplier<core.BearerToken>;
@@ -21,19 +21,19 @@ export declare namespace Accounts {
     }
 }
 
-export class Accounts {
-    constructor(protected readonly _options: Accounts.Options) {}
+export class Journalentries {
+    constructor(protected readonly _options: Journalentries.Options) {}
 
     /**
-     * Get all accounts.
+     * Get all journal entries.
      * @throws {@link DeltaApi.UnexpectedError}
      * @throws {@link DeltaApi.BadGatewayError}
      */
-    public async getAccounts(requestOptions?: Accounts.RequestOptions): Promise<DeltaApi.AccountCollection> {
+    public async getAccounts(requestOptions?: Journalentries.RequestOptions): Promise<DeltaApi.JournalEntryCollection> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.DeltaApiEnvironment.Production,
-                "/accounts"
+                "/journalentries"
             ),
             method: "GET",
             headers: {
@@ -47,7 +47,7 @@ export class Accounts {
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
         });
         if (_response.ok) {
-            return await serializers.AccountCollection.parseOrThrow(_response.body, {
+            return await serializers.JournalEntryCollection.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -99,19 +99,19 @@ export class Accounts {
     }
 
     /**
-     * Get a specific account.
+     * The unique identifier of the journal entry.
      * @throws {@link DeltaApi.NotFoundError}
      * @throws {@link DeltaApi.UnexpectedError}
      * @throws {@link DeltaApi.BadGatewayError}
      */
-    public async getAccountById(
-        accountId: DeltaApi.AccountId,
-        requestOptions?: Accounts.RequestOptions
-    ): Promise<DeltaApi.Account> {
+    public async getJournalEntryById(
+        id: DeltaApi.JournalEntryId,
+        requestOptions?: Journalentries.RequestOptions
+    ): Promise<DeltaApi.JournalEntry> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.DeltaApiEnvironment.Production,
-                `/accounts/${await serializers.AccountId.jsonOrThrow(accountId)}`
+                `/journalentries/${await serializers.JournalEntryId.jsonOrThrow(id)}`
             ),
             method: "GET",
             headers: {
@@ -125,7 +125,7 @@ export class Accounts {
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
         });
         if (_response.ok) {
-            return await serializers.Account.parseOrThrow(_response.body, {
+            return await serializers.JournalEntry.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
